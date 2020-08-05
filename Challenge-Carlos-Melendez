@@ -1,0 +1,662 @@
+//cobrar bien 
+describe('Encontrar tarifas',function(){
+    it('Search la pagina y cobrar bien en tarifa Valet Parking',function(){
+        cy.visit('http://www.shino.de/parkcalc/ ');
+        cy.get('#ParkingLot').select('Valet Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('8:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 12')
+
+    })
+    
+    it('cobrar bien em Tarifa Short-Term Parking',function(){
+        cy.get('#ParkingLot').select('Short-Term Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('8:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 4')
+        
+    })
+
+    it('cobrar bien em Tarifa Economy Parking',function(){
+        cy.get('#ParkingLot').select('Economy Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('8:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 4')
+        
+    })
+
+    it('cobrar bien em Tarifa Long-Term Garage Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Garage Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('8:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 4')
+        
+    })
+    it('cobrar bien em Tarifa Long-Term Surface Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Surface Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('8:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 4')
+        
+    })
+
+//Debe cobrar cero al poner la misma hora de entrada y de salida 
+    it('Cobrar cero en tarifa Valet Parking',function(){
+        cy.get('#ParkingLot').select('Valet Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+
+    })
+    
+    it('Cobrar cero em Tarifa Short-Term Parking',function(){
+        cy.get('#ParkingLot').select('Short-Term Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+
+    it('Cobrar cero em Tarifa Economy Parking',function(){
+        cy.get('#ParkingLot').select('Economy Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+
+    it('Cobrar cero em Tarifa Long-Term Garage Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Garage Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+    it('Cobrar cero em Tarifa Long-Term Surface Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Surface Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('10:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+    // Debe Cobrar cero al poner en hora militar y no hacer cambio de AM a PM
+
+    it('Cobrar cero al poner en hora militar y no hacer cambio de AM a PM en tarifa Valet Parking',function(){
+        cy.get('#ParkingLot').select('Valet Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+
+    })
+    
+    it('Cobrar cero al poner en hora militar y no hacer cambio de AM a PM Short-Term Parking',function(){
+        cy.get('#ParkingLot').select('Short-Term Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+
+    it('Cobrar cero al poner en hora militar y no hacer cambio de AM a PM em Tarifa Economy Parking',function(){
+        cy.get('#ParkingLot').select('Economy Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+
+    it('Cobrar cero al poner en hora militar y no hacer cambio de AM a PM em Tarifa Long-Term Garage Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Garage Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+    it('Cobrar cero al poner en hora militar y no hacer cambio de AM a PM em Tarifa Long-Term Surface Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Surface Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 0')
+        
+    })
+
+    //cobrar al poner en hora miliyar y pm
+    it('Cobrar al poner en hora militar y  PM en tarifa Valet Parking',function(){
+        cy.get('#ParkingLot').select('Valet Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 18')
+
+    })
+    
+    it('Cobrar al poner en hora militar y  PM Short-Term Parking',function(){
+        cy.get('#ParkingLot').select('Short-Term Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 24')
+        
+    })
+
+    it('Cobrar  al poner en hora militar y  PM em Tarifa Economy Parking',function(){
+        cy.get('#ParkingLot').select('Economy Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 9')
+        
+    })
+
+    it('Cobrar  al poner en hora militar y PM em Tarifa Long-Term Garage Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Garage Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 12')
+        
+    })
+    it('Cobrar  al poner en hora militar y  PM em Tarifa Long-Term Surface Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Surface Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 10')
+        
+    })
+
+// cobrar al poner en hora militar y pm NO haceR CAMBIO DE NUMERO EN LA HORA DE SALDA
+
+    it('Cobrar  al poner en hora militar y  PM no debe hacer cambio en hora de salida en tarifa Valet Parking',function(){
+        cy.get('#ParkingLot').select('Valet Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 18')
+        cy.get('#LeavingTime').contains('22:00')
+
+    })
+    
+    it('Cobrar  al poner en hora militar y  PM no debe hacer cambio en hora de salida Short-Term Parking',function(){
+        cy.get('#ParkingLot').select('Short-Term Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 24')
+        cy.get('#LeavingTime').contains('22:00')
+
+        
+    })
+
+    it('Cobrar  al poner en hora militar y  PM no debe hacer cambio en hora de salida em Tarifa Economy Parking',function(){
+        cy.get('#ParkingLot').select('Economy Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 9')
+        cy.get('#LeavingTime').contains('22:00')
+
+        
+    })
+
+    it('Cobrar  al poner en hora militar y  PM no debe hacer cambio en hora de salida em Tarifa Long-Term Garage Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Garage Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 12')
+        cy.get('#LeavingTime').contains('22:00')
+
+        
+    })
+    it('Cobrar  al poner en hora militar y  PM no debe hacer cambio en hora de salida em Tarifa Long-Term Surface Parking',function(){
+        cy.get('#ParkingLot').select('Long-Term Surface Parking');
+        cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+            cy.log(ParkingLotELE.text())
+        })
+        cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="PM"]').click();
+        cy.get('#StartingDate').clear().type('12/12/2020');
+        cy.get('#LeavingDate').clear().type('12/12/2020');
+        cy.get('#StartingTime').clear().type('10:00');
+        cy.get('#LeavingTime').clear().type('22:00');
+        cy.get('[type="submit"]').click(); 
+        cy.get('.SubHead > b').contains('$ 10')
+        cy.get('#LeavingTime').contains('22:00')
+
+        
+    })   
+
+//No cobrar si es unA fecha inexistente 
+it('No cobrar si es un fecha inexistente en tarifa Valet Parking',function(){
+    cy.get('#ParkingLot').select('Valet Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('13/37/2020');
+    cy.get('#LeavingDate').clear().type('14/73/2020');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+
+})
+
+it('No cobrar si es un fecha inexistente Short-Term Parking',function(){
+    cy.get('#ParkingLot').select('Short-Term Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('13/37/2020');
+    cy.get('#LeavingDate').clear().type('14/73/2020');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+   
+
+    
+})
+
+it('No cobrar si es un fecha inexistente em Tarifa Economy Parking',function(){
+    cy.get('#ParkingLot').select('Economy Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('13/37/2020');
+    cy.get('#LeavingDate').clear().type('14/73/2020');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+})
+
+it('No cobrar si es un fecha inexistente em Tarifa Long-Term Garage Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Garage Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('13/37/2020');
+    cy.get('#LeavingDate').clear().type('14/73/2020');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+
+    
+})
+it('No cobrar si es un fecha inexistente  em Tarifa Long-Term Surface Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Surface Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('13/37/2020');
+    cy.get('#LeavingDate').clear().type('14/73/2020');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+
+    
+})   
+//No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora
+it('No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora en tarifa Valet Parking',function(){
+    cy.get('#ParkingLot').select('Valet Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('12/30/2020');
+    cy.get('#LeavingDate').clear().type('12/30/2020');
+    cy.get('#StartingTime').clear().type('100000000000000000:00');
+    cy.get('#LeavingTime').clear().type('110000000000000000000000:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+
+})
+
+it('No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora en Short-Term Parking',function(){
+    cy.get('#ParkingLot').select('Short-Term Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('12/30/2020');
+    cy.get('#LeavingDate').clear().type('12/30/2020');
+    cy.get('#StartingTime').clear().type('100000000000000000:00');
+    cy.get('#LeavingTime').clear().type('110000000000000000000000:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+   
+
+    
+})
+
+it('No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora em Tarifa Economy Parking',function(){
+    cy.get('#ParkingLot').select('Economy Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('12/30/2020');
+    cy.get('#LeavingDate').clear().type('12/30/2020');
+    cy.get('#StartingTime').clear().type('100000000000000000:00');
+    cy.get('#LeavingTime').clear().type('110000000000000000000000:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+    
+})
+
+it('No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora em Tarifa Long-Term Garage Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Garage Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('12/30/2020');
+    cy.get('#LeavingDate').clear().type('12/30/2020');
+    cy.get('#StartingTime').clear().type('100000000000000000:00');
+    cy.get('#LeavingTime').clear().type('110000000000000000000000:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+
+    
+})
+it('No cobrar si la hora de salida y hora de entrada son numeros que no cumplen como hora  em Tarifa Long-Term Surface Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Surface Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('12/30/2020');
+    cy.get('#LeavingDate').clear().type('12/30/2020');
+    cy.get('#StartingTime').clear().type('100000000000000000:00');
+    cy.get('#LeavingTime').clear().type('110000000000000000000000:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+
+    
+})   
+
+// si escribes cualquier palabra te cobra
+it('si escribes cualquier palabra te cobra en tarifa Valet Parking',function(){
+    cy.get('#ParkingLot').select('Valet Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('Ausländer');
+    cy.get('#LeavingDate').clear().type('Ausländer');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+
+})
+
+it('si escribes cualquier palabra te cobra en Short-Term Parking',function(){
+    cy.get('#ParkingLot').select('Short-Term Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('Ausländer');
+    cy.get('#LeavingDate').clear().type('Ausländer');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+   
+
+    
+})
+
+it('si escribes cualquier palabra te cobra em Tarifa Economy Parking',function(){
+    cy.get('#ParkingLot').select('Economy Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('Ausländer');
+    cy.get('#LeavingDate').clear().type('Ausländer');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+})
+
+it('si escribes cualquier palabra te cobra em Tarifa Long-Term Garage Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Garage Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('Ausländer');
+    cy.get('#LeavingDate').clear().type('Ausländer');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+    
+
+    
+})
+it('si escribes cualquier palabra te cobra  em Tarifa Long-Term Surface Parking',function(){
+    cy.get('#ParkingLot').select('Long-Term Surface Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').get(':nth-child(3) > :nth-child(2) > [value="AM"]').click();
+    cy.get('#StartingDate').clear().type('Ausländer');
+    cy.get('#LeavingDate').clear().type('Ausländer');
+    cy.get('#StartingTime').clear().type('10:00');
+    cy.get('#LeavingTime').clear().type('11:00');
+    cy.get('[type="submit"]').click(); 
+    cy.get('.SubHead > b').contains('ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME')
+    
+
+    
+})  
+// Para que los checkbox PM regrese a AM 
+it('Para checkboxs PM a AM',function(){
+    cy.get('#ParkingLot').select('Long-Term Surface Parking');
+    cy.get('#ParkingLot').first().then(function(ParkingLotELE){
+        cy.log(ParkingLotELE.text())
+    })
+    cy.get('#StartingTime').clear().type('12:00');
+    cy.get('#LeavingTime').clear().type('1:00');
+    cy.get(':nth-child(2) > :nth-child(2) > [value="AM"]').check();
+    cy.get(':nth-child(3) > :nth-child(2) > [value="PM"]').check();
+    cy.get('[type="submit"]').click();
+    cy.get(':nth-child(2) > :nth-child(2) > [value="PM"]').should('be.checked');
+})
+
+
+
+
+
+
+
+})
